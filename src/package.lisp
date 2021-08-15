@@ -1,3 +1,5 @@
 (defpackage :lineq-solve
   (:use :cl)
-  (:export ))
+  (:export #:make-a-solver
+           #:solve
+           #:quick-solve))

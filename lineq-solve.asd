@@ -1,7 +1,7 @@
 (defsystem lineq-solve
   :name "lineq-solve"
   :author "Thomas HOULLIER"
-  :depends-on ("mat-ops" "alexandria")
+  :depends-on ("lup-decomp" "lup-solve")
   :components
   ((:module "src"
     :components ((:file "package")
