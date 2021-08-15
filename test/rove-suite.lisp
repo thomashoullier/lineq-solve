@@ -6,10 +6,14 @@
   (let ((a1 #2A((1 2 0) (3 4 4) (5 6 3)))
         (b1 #(3 7 8))
         (val-x1 #(-7/5 11/5 3/5))
-        (a-solver1))
+        (a-solver1)
+        (sing-a #2A((1 2 0) (1 2 0) (5 6 3))))
     (testing "make-a-solver"
       (pass (setf a-solver1 (lineq-solve:make-a-solver a1))))
     (testing "solve"
       (ok (equalp val-x1 (lineq-solve:solve a-solver1 b1)) ""))
     (testing "quick-solve"
-      (ok (equalp val-x1 (lineq-solve:quick-solve a1 b1)) ""))))
+      (ok (equalp val-x1 (lineq-solve:quick-solve a1 b1)) ""))
+    (testing "singular case"
+      (ok (not (lineq-solve:make-a-solver sing-a)) "make-a-solver")
+      (ok (not (lineq-solve:quick-solve sing-a b1)) "quick-solve"))))

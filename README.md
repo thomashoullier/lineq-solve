@@ -9,6 +9,8 @@ A.x = b
 **make-a-solver** A => a-solver
 
 Instantiate a solver for systems of equations involving matrix A.
+Returns nil if A is singular: if you have reason to think A can
+be singular then you need to check for nil here.
 
 **solve** a-solver b => x
 
@@ -17,7 +19,7 @@ Use a a-solver instance to solve for x with right-hand side vector b.
 **quick-solve** A b => x
 
 QoL function for when A is only ever used once. Slower if multiple b
-need to be treated.
+need to be treated. Returns nil if A is singular.
 
 ## Test
 Launch tests with:

@@ -9,7 +9,9 @@
   "Create a solver instance from square matrix A."
   (let ((lu) (p))
     (multiple-value-setq (lu p) (lup-decomp:gauss-partial A))
-    (make-instance 'a-solver :lu lu :p p)))
+    (if lu
+        (make-instance 'a-solver :lu lu :p p)
+        nil)))
 
 (defmethod solve ((a-solver a-solver) b)
   "Solve for x in A.x = b using already instanced solver."
@@ -17,4 +19,5 @@
 
 (defun quick-solve (A b)
   "Quality of life function: solve for A.x=b where A only serves once."
-  (solve (make-a-solver A) b))
+  (let ((solver (make-a-solver A)))
+    (if solver (solve (make-a-solver A) b) nil)))
